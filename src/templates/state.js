@@ -54,36 +54,46 @@ export default ({ pageContext }) => {
         </a>
       </p>
       <ul>
-        <li>
-          Primary:{' '}
-          <a href={pageContext.state.covid19Site} target="_blank">
-            {pageContext.state.covid19Site}
-          </a>
-        </li>
-        <li>
-          Secondary:{' '}
-          <a href={pageContext.state.covid19SiteSecondary} target="_blank">
-            {pageContext.state.covid19SiteSecondary}
-          </a>
-        </li>
-        <li>
-          Tertiary:{' '}
-          <a href={pageContext.state.covid19SiteTertiary} target="_blank">
-            {pageContext.state.covid19SiteTertiary}
-          </a>
-        </li>
-        <li>
-          Quaternary:{' '}
-          <a href={pageContext.state.covid19SiteQuaternary} target="_blank">
-            {pageContext.state.covid19SiteQuaternary}
-          </a>
-        </li>
-        <li>
-          Quinary:{' '}
-          <a href={pageContext.state.covid19SiteQuinary} target="_blank">
-            {pageContext.state.covid19SiteQuinary}
-          </a>
-        </li>
+        {pageContext.state.covid19Site && (
+          <li>
+            Primary:{' '}
+            <a href={pageContext.state.covid19Site} target="_blank">
+              {pageContext.state.covid19Site}
+            </a>
+          </li>
+        )}
+        {pageContext.state.covid19SiteSecondary && (
+          <li>
+            Secondary:{' '}
+            <a href={pageContext.state.covid19SiteSecondary} target="_blank">
+              {pageContext.state.covid19SiteSecondary}
+            </a>
+          </li>
+        )}
+        {pageContext.state.covid19SiteTertiary && (
+          <li>
+            Tertiary:{' '}
+            <a href={pageContext.state.covid19SiteTertiary} target="_blank">
+              {pageContext.state.covid19SiteTertiary}
+            </a>
+          </li>
+        )}
+        {pageContext.state.covid19SiteQuaternary && (
+          <li>
+            Quaternary:{' '}
+            <a href={pageContext.state.covid19SiteQuaternary} target="_blank">
+              {pageContext.state.covid19SiteQuaternary}
+            </a>
+          </li>
+        )}
+        {pageContext.state.covid19SiteQuinary && (
+          <li>
+            Quinary:{' '}
+            <a href={pageContext.state.covid19SiteQuinary} target="_blank">
+              {pageContext.state.covid19SiteQuinary}
+            </a>
+          </li>
+        )}
       </ul>
       <Table>
         <thead>
