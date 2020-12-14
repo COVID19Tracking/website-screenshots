@@ -16,13 +16,13 @@ exports.createPages = async ({ graphql, actions }) => {
           covid19Site
         }
       }
-      allScreenshot {
+      allScreenshot(sort: { fields: date, order: DESC }) {
         nodes {
           url
           tertiary
           secondary
           state
-          date
+          date(formatString: "MMMM D, YYYY")
           time: dateChecked(formatString: "h:mm a")
         }
       }

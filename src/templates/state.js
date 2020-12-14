@@ -105,46 +105,44 @@ export default ({ pageContext }) => {
           </tr>
         </thead>
         <tbody>
-          {Object.values(allScreenshots)
-            .sort((a, b) => (a.date < b.date ? 1 : -1))
-            .map((screenshot) => (
-              <tr>
-                <Date>{screenshot.date}</Date>
-                <td>
-                  <ul>
-                    {screenshot.primary.map((item) => (
-                      <li>
-                        <a href={item.url} target="_blank">
-                          {item.time}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    {screenshot.secondary.map((item) => (
-                      <li>
-                        <a href={item.url} target="_blank">
-                          {item.time}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    {screenshot.tertiary.map((item) => (
-                      <li>
-                        <a href={item.url} target="_blank">
-                          {item.time}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            ))}
+          {Object.values(allScreenshots).map((screenshot) => (
+            <tr>
+              <Date>{screenshot.date}</Date>
+              <td>
+                <ul>
+                  {screenshot.primary.map((item) => (
+                    <li>
+                      <a href={item.url} target="_blank">
+                        {item.time}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  {screenshot.secondary.map((item) => (
+                    <li>
+                      <a href={item.url} target="_blank">
+                        {item.time}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  {screenshot.tertiary.map((item) => (
+                    <li>
+                      <a href={item.url} target="_blank">
+                        {item.time}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Layout>

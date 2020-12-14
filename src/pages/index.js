@@ -6,7 +6,9 @@ import Layout from '../components/layout'
 const List = styled.ul`
   list-style-type: none;
   font-size: 1.5rem;
-  columns: 3;
+  @media (min-width: 1000px) {
+    columns: 3;
+  }
 `
 
 export default () => {
