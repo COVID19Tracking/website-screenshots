@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  update-index:
+  build-website:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
