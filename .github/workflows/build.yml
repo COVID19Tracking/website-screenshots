@@ -2,31 +2,28 @@ name: Build screenshot site
 on:
   schedule:
     - cron: '30 * * * *'
+  push:
+    branches:
+      - master
 
 jobs:
   update-index:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout build branch
-        uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
         with:
-          path: ./
+          persist-credentials: false
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.yarn
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install Dependencies
-        run: yarn install
-
-      - name: Deploy site
+      - name: Install and Build 🔧
         run: |
-          yarn deploy
+          yarn install
+          yarn build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          CLEAN: true
