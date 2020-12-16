@@ -3,8 +3,16 @@ module.exports = {
     title: 'COVID Tracking Project Screenshots',
   },
   plugins: [
-    `gatsby-transformer-json`,
+    'gatsby-transformer-json',
     'gatsby-plugin-no-javascript',
+    'gatsby-transformer-yaml',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'screenshotConfig',
+        path: `${__dirname}/_screenshots/configs/taco`,
+      },
+    },
     {
       resolve: `gatsby-source-covid-tracking-api`,
       options: {

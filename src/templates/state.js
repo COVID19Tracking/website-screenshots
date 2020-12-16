@@ -54,46 +54,14 @@ export default ({ pageContext }) => {
         </a>
       </p>
       <ul>
-        {pageContext.state.covid19Site && (
+        {pageContext.links.map((link) => (
           <li>
-            Primary:{' '}
-            <a href={pageContext.state.covid19Site} target="_blank">
-              {pageContext.state.covid19Site}
+            <strong>{link.name}:</strong>{' '}
+            <a href={link.url} target="_blank">
+              {link.url}
             </a>
           </li>
-        )}
-        {pageContext.state.covid19SiteSecondary && (
-          <li>
-            Secondary:{' '}
-            <a href={pageContext.state.covid19SiteSecondary} target="_blank">
-              {pageContext.state.covid19SiteSecondary}
-            </a>
-          </li>
-        )}
-        {pageContext.state.covid19SiteTertiary && (
-          <li>
-            Tertiary:{' '}
-            <a href={pageContext.state.covid19SiteTertiary} target="_blank">
-              {pageContext.state.covid19SiteTertiary}
-            </a>
-          </li>
-        )}
-        {pageContext.state.covid19SiteQuaternary && (
-          <li>
-            Quaternary:{' '}
-            <a href={pageContext.state.covid19SiteQuaternary} target="_blank">
-              {pageContext.state.covid19SiteQuaternary}
-            </a>
-          </li>
-        )}
-        {pageContext.state.covid19SiteQuinary && (
-          <li>
-            Quinary:{' '}
-            <a href={pageContext.state.covid19SiteQuinary} target="_blank">
-              {pageContext.state.covid19SiteQuinary}
-            </a>
-          </li>
-        )}
+        ))}
       </ul>
       <Table>
         <thead>

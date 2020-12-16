@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "rm -rf _data || true && git clone --depth 1 --branch data https://github.com/COVID19Tracking/website-data _data && rm -rf _data/.git && curl https://api.covidtracking.com/v1/states/info.json > _data/states.json",
+    "build": "rm -rf _screenshots || true && git clone --depth 1 https://github.com/COVID19Tracking/screenshots _screenshots && rm -rf _screenshots/.git && rm -rf _data || true && git clone --depth 1 --branch data https://github.com/COVID19Tracking/website-data _data && rm -rf _data/.git && curl https://api.covidtracking.com/v1/states/info.json > _data/states.json",
     "deploy": "yarn build && gatsby build && echo \"screenshots.covidtracking.com\" > ./public/CNAME && gh-pages -d public -b gh-pages",
     "pages": "gh-pages -d public -b gh-pages"
   },
@@ -22,6 +22,7 @@
     "gatsby-source-filesystem": "^2.7.0",
     "gatsby-transformer-json": "^2.7.0",
     "gatsby-transformer-sharp": "^2.6.0",
+    "gatsby-transformer-yaml": "^2.8.0",
     "gh-pages": "^3.1.0",
     "luxon": "^1.25.0",
     "prop-types": "^15.7.2",
