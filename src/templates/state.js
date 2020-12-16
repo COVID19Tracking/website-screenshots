@@ -53,16 +53,20 @@ export default ({ pageContext }) => {
           View state information
         </a>
       </p>
-      <ul>
-        {pageContext.links.map((link) => (
-          <li>
-            <strong>{link.name}:</strong>{' '}
-            <a href={link.url} target="_blank">
-              {link.url}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {pageContext.links && (
+        <ul>
+          {pageContext.links.childTacoYaml.links.map((link) => (
+            <li>
+              <strong>
+                {link.name.charAt(0).toUpperCase() + link.name.slice(1)}:
+              </strong>{' '}
+              <a href={link.url} target="_blank">
+                {link.url}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
       <Table>
         <thead>
           <tr>

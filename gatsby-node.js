@@ -9,11 +9,6 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           state
           slug
-          covid19SiteQuaternary
-          covid19SiteQuinary
-          covid19SiteSecondary
-          covid19SiteTertiary
-          covid19Site
         }
       }
       allScreenshot(sort: { fields: date, order: DESC }) {
@@ -43,7 +38,9 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allState.nodes.forEach((state) => {
     const context = {
       state,
-      links: result.allFile.nodes.find((node) => node.state === state.state),
+      links: result.data.allFile.nodes.find(
+        (node) => node.childTacoYaml.state === state.state,
+      ),
       screenshots: result.data.allScreenshot.nodes.filter(
         (screenshot) => screenshot.state === state.state,
       ),
