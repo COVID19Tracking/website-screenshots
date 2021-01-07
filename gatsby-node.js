@@ -9,6 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           state
           slug
+          name
         }
       }
       allScreenshot(sort: { fields: date, order: DESC }) {
