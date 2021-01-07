@@ -59,18 +59,17 @@ export default ({ pageContext }) => {
         <ul>
           {pageContext.links.childTacoYaml.links.map((link) => (
             <li>
+              <strong>
+                {link.name.charAt(0).toUpperCase() + link.name.slice(1)}:
+              </strong>{' '}
               {link.url.search('http') > 0 ? (
                 <>
-                  We dynamically generate the {link.name} URL based on this
-                  pattern:
+                  We dynamically generate the URL, based on this pattern:
                   <br />
                   <code>{link.url}</code>
                 </>
               ) : (
                 <>
-                  <strong>
-                    {link.name.charAt(0).toUpperCase() + link.name.slice(1)}:
-                  </strong>{' '}
                   <a href={link.url} target="_blank">
                     {link.url}
                   </a>
