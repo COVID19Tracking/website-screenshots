@@ -57,6 +57,13 @@ export default ({ pageContext }) => {
       </p>
       {pageContext.links && (
         <ul>
+          {pageContext.state.twitter && (
+            <li>
+              <a href={`https://twitter.com/${pageContext.state.twitter}`}>
+                Official Twitter account
+              </a>
+            </li>
+          )}
           {pageContext.links.childTacoYaml.links.map((link) => (
             <li>
               <strong>

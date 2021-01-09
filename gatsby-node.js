@@ -10,6 +10,7 @@ exports.createPages = async ({ graphql, actions }) => {
           state
           slug
           name
+          twitter
         }
       }
       allScreenshot(sort: { fields: date, order: DESC }) {
