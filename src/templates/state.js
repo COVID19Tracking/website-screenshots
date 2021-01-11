@@ -32,6 +32,8 @@ export default ({ pageContext }) => {
         primary: [],
         secondary: [],
         tertiary: [],
+        quaternary: [],
+        quinary: [],
       }
     }
     if (screenshot.tertiary) {
@@ -40,6 +42,14 @@ export default ({ pageContext }) => {
     }
     if (screenshot.secondary) {
       allScreenshots[screenshot.date].secondary.push(screenshot)
+      return
+    }
+    if (screenshot.quaternary) {
+      allScreenshots[screenshot.date].quaternary.push(screenshot)
+      return
+    }
+    if (screenshot.quinary) {
+      allScreenshots[screenshot.date].quinary.push(screenshot)
       return
     }
     allScreenshots[screenshot.date].primary.push(screenshot)
@@ -93,6 +103,12 @@ export default ({ pageContext }) => {
             <th>Primary</th>
             <th>Secondary</th>
             <th>Tertiary</th>
+            {Object.values(allScreenshots).find(
+              (shot) => shot.quaternary.length > 0,
+            ) && <th>Quaternary</th>}
+            {Object.values(allScreenshots).find(
+              (shot) => shot.quinary.length > 0,
+            ) && <th>Quinary</th>}
           </tr>
         </thead>
         <tbody>
@@ -132,6 +148,32 @@ export default ({ pageContext }) => {
                   ))}
                 </ul>
               </td>
+              {screenshot.quaternary.length > 0 && (
+                <td>
+                  <ul>
+                    {screenshot.quaternary.map((item) => (
+                      <li>
+                        <a href={item.url} target="_blank">
+                          {item.time}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+              )}
+              {screenshot.quinary.length > 0 && (
+                <td>
+                  <ul>
+                    {screenshot.quinary.map((item) => (
+                      <li>
+                        <a href={item.url} target="_blank">
+                          {item.time}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
