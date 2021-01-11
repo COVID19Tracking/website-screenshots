@@ -18,6 +18,8 @@ exports.createPages = async ({ graphql, actions }) => {
           url
           tertiary
           secondary
+          quaternary
+          quinary
           state
           date(formatString: "MMMM D, YYYY")
           time: dateChecked(formatString: "h:mm a")
