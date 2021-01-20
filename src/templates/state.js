@@ -2,10 +2,17 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Layout from '../components/layout'
 
+const order = ['primary', 'secondary', 'tertiary', 'quaternary', 'quinary']
+
+const titleCase = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+
 const Table = styled.table`
   width: 100%;
-  tr {
-    border-bottom: 1px solid black;
+  td {
+    border-top: 1px solid black;
+    &.no-border {
+      border-top: none;
+    }
   }
   ul {
     list-style-type: none;
@@ -29,30 +36,28 @@ export default ({ pageContext }) => {
     if (typeof allScreenshots[screenshot.date] === 'undefined') {
       allScreenshots[screenshot.date] = {
         date: screenshot.date,
-        primary: [],
-        secondary: [],
-        tertiary: [],
-        quaternary: [],
-        quinary: [],
+        types: {},
       }
     }
-    if (screenshot.tertiary) {
-      allScreenshots[screenshot.date].tertiary.push(screenshot)
-      return
+    if (
+      typeof allScreenshots[screenshot.date].types[screenshot.type] ===
+      'undefined'
+    ) {
+      allScreenshots[screenshot.date].types[screenshot.type] = []
     }
-    if (screenshot.secondary) {
-      allScreenshots[screenshot.date].secondary.push(screenshot)
-      return
-    }
-    if (screenshot.quaternary) {
-      allScreenshots[screenshot.date].quaternary.push(screenshot)
-      return
-    }
-    if (screenshot.quinary) {
-      allScreenshots[screenshot.date].quinary.push(screenshot)
-      return
-    }
-    allScreenshots[screenshot.date].primary.push(screenshot)
+    allScreenshots[screenshot.date].types[screenshot.type].push(screenshot)
+  })
+  Object.keys(allScreenshots).forEach((date) => {
+    allScreenshots[date].types = Object.values(allScreenshots[date].types).sort(
+      (a, b) => {
+        const aType = a[0].type
+        const bType = b[0].type
+        if (order.indexOf(aType) === -1) {
+          return 1
+        }
+        return order.indexOf(aType) < order.indexOf(bType) ? -1 : 1
+      },
+    )
   })
 
   return (
@@ -100,81 +105,53 @@ export default ({ pageContext }) => {
         <thead>
           <tr>
             <th>Date</th>
-            <th>Primary</th>
-            <th>Secondary</th>
-            <th>Tertiary</th>
-            {Object.values(allScreenshots).find(
-              (shot) => shot.quaternary.length > 0,
-            ) && <th>Quaternary</th>}
-            {Object.values(allScreenshots).find(
-              (shot) => shot.quinary.length > 0,
-            ) && <th>Quinary</th>}
+            <th>Source</th>
+            <th>Screenshots</th>
           </tr>
         </thead>
         <tbody>
-          {Object.values(allScreenshots).map((screenshot) => (
-            <tr>
-              <Date>{screenshot.date}</Date>
-              <td>
-                <ul>
-                  {screenshot.primary.map((item) => (
-                    <li>
-                      <a href={item.url} target="_blank">
-                        {item.time}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              <td>
-                <ul>
-                  {screenshot.secondary.map((item) => (
-                    <li>
-                      <a href={item.url} target="_blank">
-                        {item.time}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              <td>
-                <ul>
-                  {screenshot.tertiary.map((item) => (
-                    <li>
-                      <a href={item.url} target="_blank">
-                        {item.time}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              {screenshot.quaternary.length > 0 && (
+          {Object.values(allScreenshots).map((date) => (
+            <>
+              <tr>
+                <td>
+                  <strong>{date.date}</strong>
+                </td>
+                <td>{titleCase(date.types[0][0].type)}</td>
                 <td>
                   <ul>
-                    {screenshot.quaternary.map((item) => (
+                    {date.types[0].map((screenshot) => (
                       <li>
-                        <a href={item.url} target="_blank">
-                          {item.time}
+                        <a href={screenshot.url} target="_blank">
+                          {screenshot.time}
                         </a>
                       </li>
                     ))}
                   </ul>
                 </td>
-              )}
-              {screenshot.quinary.length > 0 && (
-                <td>
-                  <ul>
-                    {screenshot.quinary.map((item) => (
-                      <li>
-                        <a href={item.url} target="_blank">
-                          {item.time}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              )}
-            </tr>
+              </tr>
+              {date.types.splice(1, date.types.length).map((type) => (
+                <tr>
+                  <td className="no-border" />
+                  <td>
+                    {titleCase(
+                      type[0].type.replace(':', ' ').replace(' source', ''),
+                    )}
+                    {type[0].isManual && <> (manual)</>}
+                  </td>
+                  <td>
+                    <ul>
+                      {type.map((screenshot) => (
+                        <li>
+                          <a href={screenshot.url} target="_blank">
+                            {screenshot.time}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+            </>
           ))}
         </tbody>
       </Table>
