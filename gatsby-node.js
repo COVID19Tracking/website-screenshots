@@ -16,10 +16,8 @@ exports.createPages = async ({ graphql, actions }) => {
       allScreenshot(sort: { fields: date, order: DESC }) {
         nodes {
           url
-          tertiary
-          secondary
-          quaternary
-          quinary
+          type
+          isManual
           state
           date(formatString: "MMMM D, YYYY")
           time: dateChecked(formatString: "h:mm a")
