@@ -28,5 +28,12 @@ module.exports = {
         file: `${__dirname}/_data/states.json`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://screenshots.covidtracking.com/',
+        policy: [{ userAgent: '*', disallow: '/' }],
+      },
+    },
   ],
 }
