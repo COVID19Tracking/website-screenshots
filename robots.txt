@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+Sitemap: https://screenshots.covidtracking.com/sitemap/sitemap-index.xml
+Host: https://screenshots.covidtracking.com
