@@ -8,6 +8,7 @@ const titleCase = (name) => name.charAt(0).toUpperCase() + name.slice(1)
 
 const Table = styled.table`
   width: 100%;
+  border-collapse: collapse;
   td {
     border-top: 1px solid black;
     &.no-border {
@@ -121,7 +122,7 @@ export default ({ pageContext }) => {
                   <ul>
                     {date.types[0].map((screenshot) => (
                       <li>
-                        <a href={screenshot.url} target="_blank">
+                        <a href={screenshot.githubUrl} target="_blank">
                           {screenshot.time}
                         </a>
                       </li>
