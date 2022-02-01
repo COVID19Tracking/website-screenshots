@@ -30,6 +30,13 @@ Make sure to run "npm run setup" to clone the most recent version of the COVID A
       .update(JSON.stringify(item))
       .digest('hex')
 
+    if (type === 'screenshot') {
+      item.githubUrl = item.url.replace(
+        'https://covidtracking.com/screenshots/',
+        'https://raw.githubusercontent.com/COVID19Tracking/screenshot-archive/main/state_screenshots/',
+      )
+    }
+
     const nodeTemplate = {
       id: createNodeId(`${type}.${index}`),
       children: [],
