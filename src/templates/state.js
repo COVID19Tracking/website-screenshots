@@ -122,7 +122,7 @@ export default ({ pageContext }) => {
                   <ul>
                     {date.types[0].map((screenshot) => (
                       <li>
-                        <a href={screenshot.githubUrl} target="_blank">
+                        <a href={screenshot.s3Url} target="_blank">
                           {screenshot.time}
                         </a>
                       </li>
@@ -143,7 +143,7 @@ export default ({ pageContext }) => {
                     <ul>
                       {type.map((screenshot) => (
                         <li>
-                          <a href={screenshot.githubUrl} target="_blank">
+                          <a href={screenshot.s3Url} target="_blank">
                             {screenshot.time}
                           </a>
                         </li>

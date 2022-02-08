@@ -15,7 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       allScreenshot(sort: { fields: date, order: DESC }) {
         nodes {
-          githubUrl
+          s3Url
           type
           isManual
           state
