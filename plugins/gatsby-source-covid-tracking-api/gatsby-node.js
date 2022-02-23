@@ -33,7 +33,7 @@ Make sure to run "npm run setup" to clone the most recent version of the COVID A
     if (type === 'screenshot') {
       item.s3Url = item.url.replace(
         'https://covidtracking.com/screenshots/',
-        'https://covid-tracking-project-data.s3.us-east-1.amazonaws.com/state_screenshots/',
+        'https://github.com/COVID19Tracking/screenshot-archive/tree/main/state_screenshots/',
       )
     }
 
