@@ -31,9 +31,9 @@ Make sure to run "npm run setup" to clone the most recent version of the COVID A
       .digest('hex')
 
     if (type === 'screenshot') {
-      item.s3Url = item.url.replace(
+      item.githubUrl = item.url.replace(
         'https://covidtracking.com/screenshots/',
-        'https://github.com/COVID19Tracking/screenshot-archive/tree/main/state_screenshots/',
+        'https://raw.githubusercontent.com/COVID19Tracking/screenshot-archive/main/state_screenshots/',
       )
     }
 
